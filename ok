@@ -1,0 +1,38 @@
+#!/usr/bin/env bun
+
+if (process.argv.length < 3) {
+    console.log("Please provide at least one friend's name.");
+    process.exit();
+}
+
+const peeps = process.argv.slice(2);
+
+function roll_sixty_nine_sided_die() {
+    return 1 + Math.floor(Math.random() * 69);
+}
+
+function everyone_rolls(n) {
+    var rolls = [];
+    for (var i = 0; i < n; i++) {
+        rolls.push(roll_sixty_nine_sided_die());
+    }
+    return rolls;
+}
+
+function checkForSixtyNine(rolls) {
+    return rolls.includes(69);
+}
+
+while (true) {
+    let rolls = everyone_rolls(peeps.length);
+    console.log(`${rolls.join(', ')}`);
+    
+    if (checkForSixtyNine(rolls)) {
+        let index = rolls.indexOf(69);
+        console.log(`${peeps[index]} rolled a 69! nice`);
+        break; // Exit the loop
+    }
+    
+   
+}
+
